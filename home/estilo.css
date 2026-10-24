@@ -1,0 +1,97 @@
+body {
+    background-color: #0B0F1A;
+    height: 100vh;
+}
+
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.formLog {
+    display: flex;
+    color: #F7F7FF;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+
+
+}
+
+h1 {
+    text-align: center;
+    color: #F7F7FF;
+}
+
+.mi-header {
+    background-color: #1B2A41;
+    border-radius: 8px; 
+
+}
+
+.mi-header .login {
+     color: black;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-decoration: none;
+}
+
+.mi-footer {
+    display: flex;
+    color: #F7F7FF;
+    background-color: #1B2A41;
+    border-radius: 8px;
+    justify-content: space-evenly;
+}
+
+.mi-header .registrarse {
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+   
+}
+
+
+.juego {
+    display: flex;
+    flex: 1;
+    margin: 0 5%;
+    background-color: black;
+
+}
+
+
+.jugar {
+    color: #F7F7FF;
+    margin: auto;
+    background-color: red;
+    padding: 24px 48px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+} 
+
+
+.mi-header .perfil {
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+   
+}
+
+.mi-header .logOut{
+     color: black ;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-decoration: none;
+}

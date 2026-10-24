@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="estiloReg.css">
+
+</head>
+
+<body>
+    <div class="principal">
+        <div class="mi-header">
+            <h1> REGISTRATE </h1>
+            <button type="button" class="atras"> Atras </button>
+        </div>
+        <form action="/enviar" method="POST" onsubmit="return verificaDatos()"   class="miFormulario" name="miFormulario" autocomplete="off">
+            <div class="formulario">
+                <label for="nom"> Nombre Usuario </label>
+                <input type="text" class="nombreUsuario" name="nom">
+                <label for="mail"> Email</label>
+                <input type="email" class="emailUsuario" name="mail">
+                <label for="pass"> Password </label>
+                <input type="password" class="passUsuario" name="pass">
+                <button type="submit"> registrarse </button>
+            </div>
+        </form>
+        <div class="mi-footer">
+            <p> zio </p>
+            <p> zia </p>
+            <p> nonno </p>
+        </div>
+    </div>
+    <script type="module" src="registroJS.js"></script>
+</body>
+
+</html>

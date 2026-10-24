@@ -1,0 +1,48 @@
+body {
+    background-color: #0B0F1A;
+    height: 100vh;
+}
+
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.formulario {
+    display: flex;
+    color: #F7F7FF;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+
+
+}
+
+h1 {
+    text-align: center;
+    color: #F7F7FF;
+}
+
+.mi-header {
+    background-color: #1B2A41;
+
+    border-radius: 8px;
+
+}
+
+.mi-header .atras {
+    position: absolute;
+    top:10px;
+    left:10px;
+}
+
+.mi-footer {
+    display: flex;
+    color: #F7F7FF;
+    background-color: #1B2A41;
+    border-radius: 8px;
+    justify-content: space-evenly;
+}
