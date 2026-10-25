@@ -56,10 +56,10 @@ h1 {
 }
 
 
-.errores  {
+.errores {
     display: flex;
- align-items: center;
- justify-content: center;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     color: red;
 }

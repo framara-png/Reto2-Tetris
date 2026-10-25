@@ -15,10 +15,10 @@ export function verificaDatos(user, email, password) {
 let tieneNumero = /\d/.test(password);
 let tieneSimbolo = /[!@#$%^&*]/.test(password);
 
-    if (usuariosRegistrados.some(usuario => usuario.username.toLowerCase() === user)) {
+    if (usuariosRegistrados.some(usuario => usuario.username.toLowerCase() === user.toLowerCase())) {
         alert("usuario ya registrado. Porfavor seleciona otro");
         return false;
-    } else if (usuariosRegistrados.some(usuario => usuario.email.toLowerCase() === email)) {
+    } else if (usuariosRegistrados.some(usuario => usuario.email.toLowerCase() === email.toLowerCase())) {
         alert("Email ya registrda, porfavor utiliza otra");
         return false;
     } else if (password.length < 8) {
@@ -39,13 +39,24 @@ let tieneSimbolo = /[!@#$%^&*]/.test(password);
 } 
 
 
-export function login(user, password) {
-    if (usuariosRegistrados.some(usuario => usuario.username.toLowerCase() === user && usuario.password === password)) {
+export function loginUser(user, password) {
+    if (usuariosRegistrados.some(usuario => usuario.username.toLowerCase() === user.toLowerCase() && usuario.password === password) ) {
         return true;
     } else {
     return false; 
     }
 }   
+
+
+
+export function loginMail(mail, password) {
+    if (usuariosRegistrados.some(usuario => usuario.email.toLowerCase() === mail.toLowerCase() && usuario.password === password) ) {
+        return true;
+    } else {
+    return false; 
+    }
+}   
+
 
 
 export function setSession(username) {

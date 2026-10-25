@@ -1,7 +1,7 @@
-import { setSession, login } from "../logica/logicaJS.js";
+import { setSession, loginUser, loginMail } from "../logica/logicaJS.js";
 
 
-let errorDiv= document.querySelector(".errores");
+let errorDiv = document.querySelector(".errores");
 
 
 document.forms["formLog"].addEventListener("submit", function (para) {
@@ -9,8 +9,15 @@ document.forms["formLog"].addEventListener("submit", function (para) {
 
     let usuario = document.forms["formLog"]["userLog"].value;
     let password = document.forms["formLog"]["userPass"].value;
+    let log = null;
+    if (usuario.contains("@")) {
+        log = loginMail(usuario, password);
+    } else {
+        log = loginUser(usuario, password);
+    }
 
-    let log = login(usuario, password);
+
+
 
     if (log) {
         setSession(usuario);
@@ -19,5 +26,5 @@ document.forms["formLog"].addEventListener("submit", function (para) {
         errorDiv.innerHTML = "<p> Error: password o user incorrecto</p>";
     }
 
-}); 
+});
 
