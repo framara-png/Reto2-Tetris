@@ -9,7 +9,7 @@ let btnReg = document.querySelector(".registrarse");
 let btnPerf = document.querySelector(".perfil");
 let btnLogOut  = document.querySelector(".logOut"); 
 
-
+let btnJugar = document.querySelector(".jugar"); 
 
 
 
@@ -43,5 +43,11 @@ btnReg.addEventListener("click", function () {
 });   
 
 
-
+btnJugar.addEventListener("click", function(){
+if(usuario){
+  alert("Juego empezado");
+}else {
+  alert("registrarse o logear para jugar"); 
+}
+});
 

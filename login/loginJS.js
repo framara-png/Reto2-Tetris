@@ -10,7 +10,7 @@ document.forms["formLog"].addEventListener("submit", function (para) {
     let usuario = document.forms["formLog"]["userLog"].value;
     let password = document.forms["formLog"]["userPass"].value;
     let log = null;
-    if (usuario.contains("@")) {
+    if (usuario.includes("@")) {
         log = loginMail(usuario, password);
     } else {
         log = loginUser(usuario, password);
