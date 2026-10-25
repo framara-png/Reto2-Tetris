@@ -1,7 +1,7 @@
 import { setSession, login } from "../logica/logicaJS.js";
 
 
-
+let errorDiv= document.querySelector(".errores");
 
 
 document.forms["formLog"].addEventListener("submit", function (para) {
@@ -16,10 +16,8 @@ document.forms["formLog"].addEventListener("submit", function (para) {
         setSession(usuario);
         window.location.href = "/../home/home.html";
     } else {
-        alert("aceso Denegado");
+        errorDiv.innerHTML = "<p> Error: password o user incorrecto</p>";
     }
 
+}); 
 
-
-
-});

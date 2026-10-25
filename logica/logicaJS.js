@@ -1,13 +1,11 @@
 
 export let usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios")) || [
-  { username: "ana", password: "anaciao" },
-  { username: "paolo", password: "paolocaio" },
-  { username: "pino", password: "pinociao" }
+  { username: "ana", email: "ana@gmail.com" ,password: "anaciao" },
+  { username: "paolo", email: "paolo@gmail.com" , password: "paolocaio" },
+  { username: "pino", email: "pino@gmail.com" , password: "pinociao" }
 ];
 
-export let emailRegistradas = JSON.parse(localStorage.getItem("emails")) || [
-  "ana@gmail.com", "paolo@gmail.com"
-];
+
 
 
 
@@ -17,10 +15,10 @@ export function verificaDatos(user, email, password) {
 let tieneNumero = /\d/.test(password);
 let tieneSimbolo = /[!@#$%^&*]/.test(password);
 
-    if (usuariosRegistrados.some(usuario => usuario.username === user)) {
+    if (usuariosRegistrados.some(usuario => usuario.username.toLowerCase() === user)) {
         alert("usuario ya registrado. Porfavor seleciona otro");
         return false;
-    } else if (emailRegistradas.includes(email)) {
+    } else if (usuariosRegistrados.some(usuario => usuario.email.toLowerCase() === email)) {
         alert("Email ya registrda, porfavor utiliza otra");
         return false;
     } else if (password.length < 8) {
@@ -34,17 +32,15 @@ let tieneSimbolo = /[!@#$%^&*]/.test(password);
         return false;
     }
     else {
-        usuariosRegistrados.push({ username: user, password: password });
-        emailRegistradas.push(email);
+        usuariosRegistrados.push({ username: user.trim(), email: email.trim(), password: password });
         localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
-        localStorage.setItem("emails", JSON.stringify(emailRegistradas));
         return true;
     }
 } 
 
 
 export function login(user, password) {
-    if (usuariosRegistrados.some(usuario => usuario.username === user && usuario.password === password)) {
+    if (usuariosRegistrados.some(usuario => usuario.username.toLowerCase() === user && usuario.password === password)) {
         return true;
     } else {
     return false; 

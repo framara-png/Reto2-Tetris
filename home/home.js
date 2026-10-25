@@ -10,6 +10,10 @@ let btnPerf = document.querySelector(".perfil");
 let btnLogOut  = document.querySelector(".logOut"); 
 
 
+
+
+
+
 if (usuario) {
     btnLog.style.display = "none";
     btnReg.style.display ="none";
@@ -36,4 +40,8 @@ btnLog.addEventListener('click', function () {
 
 btnReg.addEventListener("click", function () {
   window.location.href = "../registro/registroHtml.html";
-});
+});   
+
+
+
+
