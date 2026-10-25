@@ -1,7 +1,7 @@
 
 
 import { setSession, verificaDatos } from "../logica/logicaJS.js";
-
+let btnHome = document.querySelector(".atras");
 document.forms["miFormulario"].addEventListener("submit", function (para) {
     para.preventDefault();
 
@@ -24,3 +24,6 @@ document.forms["miFormulario"].addEventListener("submit", function (para) {
 
 
 
+btnHome.addEventListener("click", function(){
+window.location.href ="../home/home.html";
+});

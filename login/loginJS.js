@@ -2,8 +2,8 @@ import { setSession, loginUser, loginMail } from "../logica/logicaJS.js";
 
 
 let errorDiv = document.querySelector(".errores");
-
-
+let btnReg = document.querySelector(".registrarse");
+let btnHome = document.querySelector(".atras");
 document.forms["formLog"].addEventListener("submit", function (para) {
     para.preventDefault();
 
@@ -20,6 +20,8 @@ document.forms["formLog"].addEventListener("submit", function (para) {
 
 
     if (log) {
+        // si se logea con mail i set session guardara el mail del usuario no el user, posible problema en futuro para guardar el record?//
+        
         setSession(usuario);
         window.location.href = "/../home/home.html";
     } else {
@@ -28,3 +30,10 @@ document.forms["formLog"].addEventListener("submit", function (para) {
 
 });
 
+btnReg.addEventListener("click", function(){
+window.location.href ="../registro/registroHtml.html";
+}); 
+
+btnHome.addEventListener("click", function(){
+window.location.href ="../home/home.html";
+});
