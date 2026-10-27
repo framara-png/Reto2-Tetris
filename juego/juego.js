@@ -1,32 +1,34 @@
 let pieza1 = [
-    [1,1,1],
+    [1, 1, 1],
     [0, 1, 0],
-    [0,0,0]
-    
+    [0, 0, 0]
+
 ];
- 
+
 
 let pieza2 = [
-    [1,1,1],
+    [1, 1, 1],
+    [0, 0, 0],
     [0,0,0]
+    
 ]
 
 let pieza3 = [
-[1,0,0],
-[1,0,0],
-[1,1,1]
-] 
+    [1, 0, 0],
+    [1, 0, 0],
+    [1, 1, 1]
+]
 
 let pieza4 = [
-    [0,1,1],
-    [0,1,0],
-    [1,1,0]
-] 
+    [0, 1, 1],
+    [0, 1, 0],
+    [1, 1, 0]
+]
 
-let piezas = [pieza1,pieza2,pieza3,pieza4];
+let piezas = [pieza1, pieza2, pieza3, pieza4];
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-  let pieza = selezionar_pieza(piezas);
+let pieza = selezionar_pieza(piezas);
 // Escalamos el canvas para trabajar con una cuadrícula de 10x20 (cada bloque mide 20px)
 context.scale(20, 20);
 
@@ -38,12 +40,12 @@ const tablero = Array.from({ length: FILAS }, () => Array(COLUMNAS).fill(0));
 
 
 
-function tirar_dado () {
-    return Math.floor(Math.random() *4);
-} 
+function tirar_dado() {
+    return Math.floor(Math.random() * 4);
+}
 
-function selezionar_pieza (p =[]) {
-return p[tirar_dado()];
+function selezionar_pieza(p = []) {
+    return p[tirar_dado()];
 }
 
 // Posición de la pieza
@@ -69,8 +71,8 @@ function dibujar() {
 
     // Dibujamos el tablero (bloques fijos) y la pieza actual
     dibujarMatriz(tablero, { x: 0, y: 0 });
-   
-    
+
+
     dibujarMatriz(pieza, pos);
 }
 
@@ -97,10 +99,10 @@ document.addEventListener('keydown', event => {
 
 // 7. GRAVEDAD AUTOMÁTICA
 setInterval(() => {
-    if (pos.y < FILAS - pieza.length + 1) {
+    if (pos.y + pieza.length < FILAS) {
         pos.y++;
     } else {
-        // Al tocar el suelo, la reiniciamos arriba
+
         pos.y = 0;
         pos.x = 3;
     }
