@@ -1,0 +1,30 @@
+ body {
+            background: #20202c;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        /* El contenedor del tablero usa CSS Grid */
+        #tablero {
+            display: grid;
+            grid-template-columns: repeat(10, 30px); /* 10 columnas de 30px */
+            grid-template-rows: repeat(20, 30px);    /* 20 filas de 30px */
+            gap: 1px;
+            background: #444;
+            border: 4px solid #111;
+        }
+        /* Estilo base para cada celda */
+        .celda {
+            background: #111;
+            transition: background 0.1s;
+        }
+        /* Clase para pintar los bloques ocupados */
+        .bloque-activo {
+            background: #00f0f0;
+            box-shadow: inset 0 0 8px rgba(255,255,255,0.5);
+        }
