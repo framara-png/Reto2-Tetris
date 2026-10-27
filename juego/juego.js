@@ -9,8 +9,8 @@ let pieza1 = [
 let pieza2 = [
     [1, 1, 1],
     [0, 0, 0],
-    [0,0,0]
-    
+    [0, 0, 0]
+
 ]
 
 let pieza3 = [
@@ -23,7 +23,7 @@ let pieza4 = [
     [0, 1, 1],
     [0, 1, 0],
     [1, 1, 0]
-] 
+]
 
 
 function getRandomColor() {
@@ -45,13 +45,14 @@ function getRandomColor() {
         "#66E64D",
         "#FF4D4D",
         "#99E6E6",
-        
+
     ];
-    
-        color = colorArray[tirar_dado(colorArray.length)];
-    
+
+    color = colorArray[tirar_dado(colorArray.length)];
+
     return color;
 }
+
 
 let piezas = [pieza1, pieza2, pieza3, pieza4];
 const canvas = document.getElementById('tetris');
@@ -81,15 +82,15 @@ function selezionar_pieza(p = []) {
 let pos = { x: 3, y: 0 };
 
 // 3. FUNCIÓN PARA DIBUJAR COSAS
-function dibujarMatriz(matriz, posicion,color) {
-   
+function dibujarMatriz(matriz, posicion, color) {
+
     matriz.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor !== 0) {
                 context.fillStyle = color;
-               
-               
-               
+
+
+
                 context.fillRect(x + posicion.x, y + posicion.y, 1, 1);
             }
         });
@@ -103,10 +104,10 @@ function dibujar() {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     // Dibujamos el tablero (bloques fijos) y la pieza actual
-    dibujarMatriz(tablero, { x: 0, y: 0 });
+    dibujarMatriz(tablero, { x: 0, y: 0 }, colorPieza);
 
 
-    dibujarMatriz(pieza, pos,colorPieza);
+    dibujarMatriz(pieza, pos, colorPieza);
 }
 
 // 5. ROTACIÓN ULTRA SIMPLE
@@ -135,8 +136,22 @@ setInterval(() => {
     if (pos.y + pieza.length < FILAS) {
         pos.y++;
     } else {
- colorPieza = getRandomColor();
+        pieza.forEach((fila, y) => {
+            fila.forEach((valor, x) => {
+                if (valor !== 0) {
+                    
+                
+    tablero[pos.y+y][pos.x+x]= 1; 
+    
+
+
+                }
+            });
+        });
+        colorPieza = getRandomColor();
         pieza = selezionar_pieza(piezas);
+
+
         pos.y = 0;
         pos.x = 3;
     }
