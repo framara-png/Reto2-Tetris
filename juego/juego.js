@@ -1,84 +1,111 @@
+let pieza1 = [
+    [1,1,1],
+    [0, 1, 0],
+    [0,0,0]
+    
+];
+ 
+
+let pieza2 = [
+    [1,1,1],
+    [0,0,0]
+]
+
+let pieza3 = [
+[1,0,0],
+[1,0,0],
+[1,1,1]
+] 
+
+let pieza4 = [
+    [0,1,1],
+    [0,1,0],
+    [1,1,0]
+] 
+
+let piezas = [pieza1,pieza2,pieza3,pieza4];
+const canvas = document.getElementById('tetris');
+const context = canvas.getContext('2d');
+  let pieza = selezionar_pieza(piezas);
+// Escalamos el canvas para trabajar con una cuadrícula de 10x20 (cada bloque mide 20px)
+context.scale(20, 20);
+
 const COLUMNAS = 10;
 const FILAS = 20;
 
-const matrizTablero = Array.from({ length: FILAS }, () => Array(COLUMNAS).fill(0));
+// 1. CREAR EL TABLERO (Matriz de 10x20 llena de ceros)
+const tablero = Array.from({ length: FILAS }, () => Array(COLUMNAS).fill(0));
 
-// 2. CONFIGURACIÓN DE LA PIEZA ACTUAL (Pieza en T)
-let pieza = [,
- ,
-    [0, 0, 0]
-];
 
-// Posición inicial de la pieza en el tablero (fila, columna)
-let piezaX = 3; 
-let piezaY = 0;
 
-// 3. FUNCIÓN DE RENDERIZADO (Dibuja la matriz JS en el Grid CSS)
+function tirar_dado () {
+    return Math.floor(Math.random() *4);
+} 
+
+function selezionar_pieza (p =[]) {
+return p[tirar_dado()];
+}
+
+// Posición de la pieza
+let pos = { x: 3, y: 0 };
+
+// 3. FUNCIÓN PARA DIBUJAR COSAS
+function dibujarMatriz(matriz, posicion) {
+    matriz.forEach((fila, y) => {
+        fila.forEach((valor, x) => {
+            if (valor !== 0) {
+                context.fillStyle = 'red'; // Color de la pieza
+                context.fillRect(x + posicion.x, y + posicion.y, 1, 1);
+            }
+        });
+    });
+}
+
+// 4. RENDERIZADO PRINCIPAL
 function dibujar() {
-    const contenedor = document.getElementById('tablero');
-    contenedor.innerHTML = ''; // Borramos el tablero anterior
+    // Limpiamos el canvas en cada frame
+    context.fillStyle = '#111';
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Recorremos las 20 filas y 10 columnas
-    for (let f = 0; f < FILAS; f++) {
-        for (let c = 0; c < COLUMNAS; c++) {
-            const celdaDiv = document.createElement('div');
-            celdaDiv.classList.add('celda');
+    // Dibujamos el tablero (bloques fijos) y la pieza actual
+    dibujarMatriz(tablero, { x: 0, y: 0 });
+   
+    
+    dibujarMatriz(pieza, pos);
+}
 
-            // Si en la matriz del tablero hay un bloque fijo...
-            if (matrizTablero[f][c] === 1) {
-                celdaDiv.classList.add('bloque-activo');
-            }
-
-            // Si la pieza actual está pasando por esta posición, también la pintamos
-            const piezaFila = f - piezaY;
-            const piezaCol = c - piezaX;
-            
-            // Comprobamos si la celda actual coincide con el dibujo de nuestra pieza
-            if (piezaFila >= 0 && piezaFila < pieza.length && 
-                piezaCol >= 0 && piezaCol < pieza[piezaFila].length) {
-                if (pieza[piezaFila][piezaCol] === 1) {
-                    celdaDiv.classList.add('bloque-activo');
-                }
-            }
-
-            contenedor.appendChild(celdaDiv);
+// 5. ROTACIÓN ULTRA SIMPLE
+function rotar() {
+    // Transponer la matriz
+    for (let y = 0; y < pieza.length; ++y) {
+        for (let x = 0; x < y; ++x) {
+            [pieza[x][y], pieza[y][x]] = [pieza[y][x], pieza[x][y]];
         }
     }
+    // Invertir las filas
+    pieza.forEach(fila => fila.reverse());
 }
 
-// 4. FUNCIÓN MATEMÁTICA DE ROTACIÓN
-function rotarPieza() {
-    // Transponer y hacer reverse
-    const nuevaPieza = pieza.map((_, i) => pieza.map(fila => fila[i]));
-    pieza = nuevaPieza.map(fila => fila.reverse());
-}
-
-// 5. CONTROL DE TECLADO
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowLeft' && piezaX > 0) {
-        piezaX--; // Mover izquierda
-    }
-    if (event.key === 'ArrowRight' && piezaX < COLUMNAS - pieza.length) {
-        piezaX++; // Mover derecha
-    }
-    if (event.key === 'ArrowUp') {
-        rotarPieza(); // Rotar
-    }
-    dibujar(); // Volver a pintar tras el movimiento
+// 6. CONTROLES
+document.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' && pos.x > 0) pos.x--;
+    if (event.key === 'ArrowRight' && pos.x < COLUMNAS - pieza[0].length) pos.x++;
+    if (event.key === 'ArrowDown') pos.y++; // Caída rápida
+    if (event.key === 'ArrowUp') rotar();
+    dibujar();
 });
 
-// 6. GRAVEDAD AUTOMÁTICA (Bajar la pieza cada segundo)
+// 7. GRAVEDAD AUTOMÁTICA
 setInterval(() => {
-    // Nota: En un juego real aquí comprobarías colisiones antes de bajar
-    if (piezaY < FILAS - 2) { 
-        piezaY++;
+    if (pos.y < FILAS - pieza.length + 1) {
+        pos.y++;
     } else {
-        // Si llega al suelo, de momento la reseteamos arriba para el ejemplo
-        piezaY = 0;
-        piezaX = 3;
+        // Al tocar el suelo, la reiniciamos arriba
+        pos.y = 0;
+        pos.x = 3;
     }
     dibujar();
 }, 1000);
 
-// Arrancar el juego dibujando por primera vez
+// Dibujo inicial
 dibujar();
