@@ -23,12 +23,41 @@ let pieza4 = [
     [0, 1, 1],
     [0, 1, 0],
     [1, 1, 0]
-]
+] 
+
+
+function getRandomColor() {
+    let color;
+    let colorArray = [
+        "#FF6633",
+        "#FFB399",
+        "#FF33FF",
+        "#FFFF99",
+        "#00B3E6",
+        "#E6B333",
+        "#999966",
+        "#809980",
+        "#E6FF80",
+        "#1AFF33",
+        "#999933",
+        "#FF3380",
+        "#CCCC00",
+        "#66E64D",
+        "#FF4D4D",
+        "#99E6E6",
+        
+    ];
+    
+        color = colorArray[tirar_dado(colorArray.length)];
+    
+    return color;
+}
 
 let piezas = [pieza1, pieza2, pieza3, pieza4];
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 let pieza = selezionar_pieza(piezas);
+let colorPieza = getRandomColor();
 // Escalamos el canvas para trabajar con una cuadrícula de 10x20 (cada bloque mide 20px)
 context.scale(20, 20);
 
@@ -40,23 +69,27 @@ const tablero = Array.from({ length: FILAS }, () => Array(COLUMNAS).fill(0));
 
 
 
-function tirar_dado() {
-    return Math.floor(Math.random() * 4);
+function tirar_dado(n) {
+    return Math.floor(Math.random() * n);
 }
 
 function selezionar_pieza(p = []) {
-    return p[tirar_dado()];
+    return p[tirar_dado(p.length)];
 }
 
 // Posición de la pieza
 let pos = { x: 3, y: 0 };
 
 // 3. FUNCIÓN PARA DIBUJAR COSAS
-function dibujarMatriz(matriz, posicion) {
+function dibujarMatriz(matriz, posicion,color) {
+   
     matriz.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor !== 0) {
-                context.fillStyle = 'red'; // Color de la pieza
+                context.fillStyle = color;
+               
+               
+               
                 context.fillRect(x + posicion.x, y + posicion.y, 1, 1);
             }
         });
@@ -73,7 +106,7 @@ function dibujar() {
     dibujarMatriz(tablero, { x: 0, y: 0 });
 
 
-    dibujarMatriz(pieza, pos);
+    dibujarMatriz(pieza, pos,colorPieza);
 }
 
 // 5. ROTACIÓN ULTRA SIMPLE
@@ -102,7 +135,8 @@ setInterval(() => {
     if (pos.y + pieza.length < FILAS) {
         pos.y++;
     } else {
-
+ colorPieza = getRandomColor();
+        pieza = selezionar_pieza(piezas);
         pos.y = 0;
         pos.x = 3;
     }
