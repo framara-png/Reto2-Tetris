@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mini Tetri - DAW 2</title>
+
+    <link rel="stylesheet" href="inicio.css">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo-pequeno">
+            <a href="inicio.html">MINI TETRI</a>
+        </div>
+
+        <nav aria-label="Navegación principal">
+
+            <button type="button" onclick="iniciarSesion()">
+                INICIAR SESIÓN
+            </button>
+
+            <button type="button" onclick="registrarse()">
+                REGISTRARSE
+            </button>
+
+            <select id="idioma" onchange="cambiarIdioma()"
+                    aria-label="Seleccionar idioma">
+
+                <option value="es">ESPAÑOL</option>
+                <option value="en">ENGLISH</option>
+
+            </select>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="inicio" aria-labelledby="titulo-principal">
+
+            <h1 id="titulo-principal">
+                <span>MINI</span>
+                <span>TETRI</span>
+            </h1>
+
+            <div class="bloques" aria-hidden="true">
+
+                <div class="columna">
+
+                    <div class="pieza verde"></div>
+                    <div class="pieza verde"></div>
+                    <div class="pieza azul"></div>
+                    <div class="pieza azul"></div>
+                    <div class="pieza rosa"></div>
+                    <div class="pieza rosa"></div>
+
+                </div>
+
+                <div class="columna">
+
+                    <div class="pieza naranja"></div>
+                    <div class="pieza naranja"></div>
+                    <div class="pieza amarillo"></div>
+                    <div class="pieza amarillo"></div>
+                    <div class="pieza verde"></div>
+                    <div class="pieza verde"></div>
+
+                </div>
+
+            </div>
+
+            <div class="menu">
+
+                <button type="button" id="btn-jugar"
+                        class="boton jugar">
+
+                    ▦ JUGAR AHORA
+
+                </button>
+
+                <button type="button" class="boton"
+                        onclick="verPuntuaciones()">
+
+                    PUNTUACIONES
+
+                </button>
+
+                <button type="button" class="boton"
+                        onclick="comoJugar()">
+
+                    CÓMO JUGAR
+
+                </button>
+
+                <p id="contador-partidas" aria-live="polite">
+                    PARTIDAS JUGADAS: 0
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="mi-footer" id="contacto">
+
+        <p>
+            &copy; 2026 - MINI TETRI |
+            ¡Prepárate para jugar!
+        </p>
+
+    </div>
+
+    <script src="inicio.js"></script>
+
+</body>
+
+</html>

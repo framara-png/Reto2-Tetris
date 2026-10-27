@@ -1,0 +1,228 @@
+/* Estilos generales y reseteo básico */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #080820;
+    color: white;
+}
+
+/* ENCABEZADO */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #10102e;
+    border-bottom: 2px solid #292965;
+}
+
+.logo-pequeno a {
+    color: #ff55ed;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav button,
+nav select {
+    padding: 10px;
+    border: 2px solid #65eaff;
+    border-radius: 8px;
+    background-color: #11112e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* PANTALLA PRINCIPAL */
+
+.inicio {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* TITULO */
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-size: 65px;
+    line-height: 0.95;
+    text-align: center;
+    text-shadow: 0 0 15px #ff40ed;
+}
+
+h1 span:first-child {
+    color: #ff72ee;
+}
+
+h1 span:last-child {
+    color: #65f5ff;
+    text-shadow: 0 0 15px #00cfff;
+}
+
+/* BLOQUES DECORATIVOS */
+
+.bloques {
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.columna {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pieza {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px currentColor;
+}
+
+.verde {
+    background-color: #35ff55;
+    color: #35ff55;
+}
+
+.azul {
+    background-color: #00d9ff;
+    color: #00d9ff;
+}
+
+.rosa {
+    background-color: #ff45e8;
+    color: #ff45e8;
+}
+
+.naranja {
+    background-color: #ff852c;
+    color: #ff852c;
+}
+
+.amarillo {
+    background-color: #ffe644;
+    color: #ffe644;
+}
+
+/* MENU DE BOTONES */
+
+.menu {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.boton {
+    padding: 14px;
+    border: 3px solid #55eaff;
+    border-radius: 10px;
+    background-color: #10102e;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px #00cfff;
+}
+
+.jugar {
+    border-color: #ff9c38;
+    box-shadow: 0 0 12px #ff9c38;
+    background-color: #452044;
+}
+
+.boton:hover {
+    background-color: #292965;
+    transform: scale(1.03);
+}
+
+.jugar:hover {
+    background-color: #743c35;
+}
+
+/* CONTADOR DE PARTIDAS */
+
+#contador-partidas {
+    color: #65eaff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0 0;
+    text-shadow: 0 0 6px #00cfff;
+}
+
+/* PIE DE PAGINA */
+
+.mi-footer {
+     display: flex;
+    justify-content: center;
+    background-color: #10102e;
+    border-top: 2px solid #292965;
+    color: #65eaff;
+    bottom: 0;
+}
+
+/* ACCESIBILIDAD: INDICAR EL FOCO DEL TECLADO */
+
+.boton:focus-visible,
+nav button:focus-visible,
+nav select:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+/* ADAPTACION A MOVILES */
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .menu {
+        width: 85%;
+    }
+
+    .pieza {
+        width: 22px;
+        height: 22px;
+    }
+
+}
