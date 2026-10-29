@@ -1,9 +1,9 @@
-let pieza1 = [
+/*let pieza1 = [
     [1, 1, 1],
     [0, 1, 0],
     [0, 0, 0]
 
-];
+];*/
 
 
 let pieza2 = [
@@ -13,7 +13,7 @@ let pieza2 = [
 
 ]
 
-let pieza3 = [
+/*let pieza3 = [
     [1, 0, 0],
     [1, 0, 0],
     [1, 1, 1]
@@ -23,7 +23,7 @@ let pieza4 = [
     [0, 1, 1],
     [0, 1, 0],
     [1, 1, 0]
-]
+]*/
 
 
 function getRandomColor() {
@@ -54,7 +54,7 @@ function getRandomColor() {
 }
 
 
-let piezas = [pieza1, pieza2, pieza3, pieza4];
+let piezas = [pieza2];
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 let pieza = selezionar_pieza(piezas);
@@ -151,6 +151,21 @@ document.addEventListener('keydown', event => {
 });
 
 
+
+function destruirFilas() {
+    for (let y = FILAS - 1; y >= 0; y--) {
+        if (tablero[y].every(casilla => casilla !== 0)) {
+            tablero.splice(y, 1);
+            tablero.unshift(Array(COLUMNAS).fill(0));
+            // aumentamos nuovamente la variable y porque necesitamos que vuelva a controlar la fila que baja, en principo pensaba que habia el riesgo //
+            // de quedar atrapado en un buqule infinido pero me he dedo cuenta que se lanza solo si se cumple la condicion//
+            y++;
+
+        }
+    }
+}
+
+
 function chocar(matrizPieza, futuraX, futuraY) {
     for (let y = 0; y < matrizPieza.length; y++) {
         for (let x = 0; x < matrizPieza[y].length; ++x) {
@@ -172,6 +187,7 @@ setInterval(() => {
         pieza.forEach((fila, y) => {
             fila.forEach((valor, x) => {
                 if (valor !== 0) {
+                    destruirFilas();
                     tablero[pos.y + y][pos.x + x] = colorPieza;
                 }
             });
