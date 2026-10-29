@@ -23,7 +23,7 @@ document.forms["formLog"].addEventListener("submit", function (para) {
         // si se logea con mail i set session guardara el mail del usuario no el user, posible problema en futuro para guardar el record?//
         
         setSession(usuario);
-        window.location.href = "/../home/home.html";
+        window.location.href = "../inicio/inicio.html";
     } else {
         errorDiv.innerHTML = "<p> Error: password o user incorrecto</p>";
     }
@@ -35,5 +35,5 @@ window.location.href ="../registro/registroHtml.html";
 }); 
 
 btnHome.addEventListener("click", function(){
-window.location.href ="../home/home.html";
+window.location.href ="../inicio/inicio.html";
 });

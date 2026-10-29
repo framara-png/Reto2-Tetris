@@ -1,5 +1,7 @@
+import { getSession, setSession } from " ../logica/logicaJS";
 
-// CONTADOR DE PARTIDAS
+
+
 
 const contador = document.getElementById("contador-partidas");
 
@@ -58,7 +60,7 @@ botonJugar.addEventListener("click", function () {
 
 function iniciarSesion() {
 
-    window.location.href = "usuario.html?modo=login";
+    window.location.href = "../login/login.html";
 
 }
 
