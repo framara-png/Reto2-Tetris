@@ -1,7 +1,41 @@
-import { getSession, setSession } from " ../logica/logicaJS";
+import { getSession, setSession,logOut } from "../logica/logicaJS.js";
+
+let btnInicio = document.querySelector(".iniciarSes");
+
+let btnReg = document.querySelector(".registro");
+
+let btnPer = document.querySelector(".perfil");
+
+let btnLogOut = document.querySelector(".logOut");
+
+btnLogOut.addEventListener("click", function(){
+    logOut();
+    window.location.reload();
+});
+
+btnInicio.addEventListener("click", function(){
+window.location.href = "../login/login.html";
+});
 
 
+btnReg.addEventListener("click", function(){
+window.location.href ="../registro/registroHTML.html";
+});
 
+let usuario = getSession();
+
+if(usuario){
+btnInicio.style.display = "none";
+btnReg.style.display = "none";
+btnPer.style.display = "";
+btnLogOut.style.display = "";
+
+}else {
+    btnInicio.style.display = "";
+btnReg.style.display = "";
+btnPer.style.display = "none";
+btnLogOut.style.display = "none";
+}
 
 const contador = document.getElementById("contador-partidas");
 
@@ -58,18 +92,7 @@ botonJugar.addEventListener("click", function () {
 // NAVEGACIÓN
 // ===================================
 
-function iniciarSesion() {
 
-    window.location.href = "../login/login.html";
-
-}
-
-
-function registrarse() {
-
-    window.location.href = "../registro/registroHtml.html";
-
-}
 
 
 function verPuntuaciones() {

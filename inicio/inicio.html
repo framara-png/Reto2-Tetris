@@ -20,15 +20,19 @@
 
         <nav aria-label="Navegación principal">
 
-            <button type="button" onclick="iniciarSesion()">
+            <button type="button" class="iniciarSes">
                 INICIAR SESIÓN
             </button>
 
-            <button type="button" onclick="registrarse()">
+            <button type="button" class ="registro">
                 REGISTRARSE
             </button>
-
-
+            <button type="button" class = "perfil">
+                PERFIL
+            </button>
+            <button type="button" class ="logOut">
+                LOG OUT
+            </button>
         </nav>
 
     </header>
@@ -70,22 +74,19 @@
 
             <div class="menu">
 
-                <button type="button" id="btn-jugar"
-                        class="boton jugar">
+                <button type="button" id="btn-jugar" class="boton jugar">
 
                     ▦ JUGAR AHORA
 
                 </button>
 
-                <button type="button" class="boton"
-                        onclick="verPuntuaciones()">
+                <button type="button" class="boton" onclick="verPuntuaciones()">
 
                     PUNTUACIONES
 
                 </button>
 
-                <button type="button" class="boton"
-                        onclick="comoJugar()">
+                <button type="button" class="boton" onclick="comoJugar()">
 
                     CÓMO JUGAR
 
@@ -110,7 +111,7 @@
 
     </div>
 
-    <script src="inicio.js"></script>
+    <script type="module" src="inicio.js"></script>
 
 </body>
 
