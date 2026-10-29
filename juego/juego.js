@@ -83,14 +83,15 @@ let pos = { x: 3, y: 0 };
 
 // 3. FUNCIÓN PARA DIBUJAR COSAS
 function dibujarMatriz(matriz, posicion, color) {
-
+    let colorFinal;
     matriz.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor !== 0) {
                 context.fillStyle = color;
-
-
-
+                context.fillRect(x + posicion.x, y + posicion.y, 1, 1);
+            } if (typeof valor == 'string') {
+                let colorFinal = valor;
+                context.fillStyle = colorFinal;
                 context.fillRect(x + posicion.x, y + posicion.y, 1, 1);
             }
         });
@@ -139,16 +140,12 @@ setInterval(() => {
         pieza.forEach((fila, y) => {
             fila.forEach((valor, x) => {
                 if (valor !== 0) {
-                    
-                
-    tablero[pos.y+y][pos.x+x]= 1; 
-    
-
-
+                    tablero[pos.y + y][pos.x + x] = colorPieza;
                 }
             });
         });
         colorPieza = getRandomColor();
+
         pieza = selezionar_pieza(piezas);
 
 
