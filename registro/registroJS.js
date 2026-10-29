@@ -25,5 +25,5 @@ document.forms["miFormulario"].addEventListener("submit", function (para) {
 
 
 btnHome.addEventListener("click", function(){
-window.location.href ="../home/home.html";
+window.location.href ="../inicio/inicio.html";
 });

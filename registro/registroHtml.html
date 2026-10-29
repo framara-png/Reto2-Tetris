@@ -12,21 +12,49 @@
             <h1> REGISTRATE </h1>
             <button type="button" class="atras"> Home </button>
         </div>
+        
+        <div class="bloques" aria-hidden="true">
+
+                <div class="columna">
+
+                    <div class="pieza verde"></div>
+                    <div class="pieza verde"></div>
+                    <div class="pieza azul"></div>
+                    <div class="pieza azul"></div>
+                    <div class="pieza rosa"></div>
+                    <div class="pieza rosa"></div>
+
+                </div>
+
+                <div class="columna">
+
+                    <div class="pieza naranja"></div>
+                    <div class="pieza naranja"></div>
+                    <div class="pieza amarillo"></div>
+                    <div class="pieza amarillo"></div>
+                    <div class="pieza verde"></div>
+                    <div class="pieza verde"></div>
+
+                </div>
+
+            </div>
+        <nav aria-label="Navegación principal">
         <form action="/enviar" method="POST" onsubmit="return verificaDatos()"   class="miFormulario" name="miFormulario" autocomplete="off">
             <div class="formulario">
-                <label for="nom"> Nombre Usuario </label>
+                <label for="nom" class="nome"> Nombre Usuario </label>
                 <input type="text" class="nombreUsuario" name="nom">
-                <label for="mail"> Email</label>
+                <label for="mail" class="email"> Email</label>
                 <input type="email" class="emailUsuario" name="mail">
-                <label for="pass"> Password </label>
+                <label for="pass" class="password"> Password </label>
                 <input type="password" class="passUsuario" name="pass">
-                <button type="submit"> registrarse </button>
+                <button type="submit" class="button"> registrarse </button>
             </div>
         </form>
+        </nav>
         <div class="mi-footer">
-            <p> zio </p>
-            <p> zia </p>
-            <p> nonno </p>
+           <p>  &copy; 2026 - MINI TETRI |
+            ¡Prepárate para jugar!
+           </p>
         </div>
     </div>
     <script type="module" src="registroJS.js"></script>

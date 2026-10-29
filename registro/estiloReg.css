@@ -1,8 +1,13 @@
-body {
-    background-color: #0B0F1A;
-    height: 100vh;
+* {
+    box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #080820;
+    color: white;
+}
 .principal {
     display: flex;
     flex-direction: column;
@@ -19,17 +24,32 @@ body {
     gap: 50px;
 
 
+} 
+
+.nome {
+color: #35ff55;
+}
+
+.password {
+color: #ffe644;
+}
+
+.email {
+color: #ff852c;
 }
 
 h1 {
     text-align: center;
-    color: #F7F7FF;
+    color:  #ff45e8;
 }
 
 .mi-header {
-    background-color: #1B2A41;
-
-    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #10102e;
+    border-bottom: 2px solid #292965;
 
 }
 
@@ -40,9 +60,110 @@ h1 {
 }
 
 .mi-footer {
+     display: flex;
+    justify-content: center;
+    background-color: #10102e;
+    border-top: 2px solid #292965;
+    color: #65eaff;
+    bottom: 0;
+} 
+
+.bloques {
+    width: 100%;
+    position: absolute;
+    top: 200px;
     display: flex;
-    color: #F7F7FF;
-    background-color: #1B2A41;
-    border-radius: 8px;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 20px;
+    pointer-events: none;
 }
+
+.columna {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pieza {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px currentColor;
+}
+
+.verde {
+    background-color: #35ff55;
+    color: #35ff55;
+}
+
+.azul {
+    background-color: #00d9ff;
+    color: #00d9ff;
+}
+
+.rosa {
+    background-color: #ff45e8;
+    color: #ff45e8;
+}
+
+.naranja {
+    background-color: #ff852c;
+    color: #ff852c;
+}
+
+.amarillo {
+    background-color: #ffe644;
+    color: #ffe644;
+} 
+
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+} 
+
+button {
+    padding: 14px;
+    border: 3px solid #55eaff;
+    border-radius: 10px;
+    background-color: #10102e;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px #00cfff;
+}
+
+
+
+
+
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .menu {
+        width: 85%;
+    }
+
+    .pieza {
+        width: 22px;
+        height: 22px;
+    }
+
+} 
