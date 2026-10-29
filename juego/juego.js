@@ -132,25 +132,42 @@ document.addEventListener('keydown', event => {
     dibujar();
 });
 
+
+function chocar(matrizPieza, futuraX, futuraY) {
+    for (let y = 0; y < matrizPieza.length; y++) {
+        for (let x = 0; x < matrizPieza[y].length; ++x) {
+            let valorPieza = matrizPieza[y][x];
+            if (valorPieza !== 0) {
+                let tableroX = futuraX + x;
+                let tableroY = futuraY + y;
+                if (tableroX < 0 || tableroX >= COLUMNAS || tableroY >= FILAS || tablero[tableroY][tableroX] !== 0) {
+                    return true
+                }
+            }
+        }
+    }
+    return false;
+}
 // 7. GRAVEDAD AUTOMÁTICA
 setInterval(() => {
-    if (pos.y + pieza.length < FILAS) {
-        pos.y++;
-    } else {
+    if (chocar(pieza, pos.x, pos.y + 1) == true) {
         pieza.forEach((fila, y) => {
             fila.forEach((valor, x) => {
                 if (valor !== 0) {
                     tablero[pos.y + y][pos.x + x] = colorPieza;
+
+
+
                 }
             });
         });
         colorPieza = getRandomColor();
-
-        pieza = selezionar_pieza(piezas);
-
-
+        pieza = selezionar_pieza(piezas)
         pos.y = 0;
         pos.x = 3;
+
+    } else {
+        pos.y++;
     }
     dibujar();
 }, 1000);
