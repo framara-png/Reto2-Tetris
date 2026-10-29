@@ -87,13 +87,18 @@ function dibujarMatriz(matriz, posicion, color) {
     matriz.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor !== 0) {
-                context.fillStyle = color;
-                context.fillRect(x + posicion.x, y + posicion.y, 1, 1);
-            } if (typeof valor == 'string') {
-                let colorFinal = valor;
+                let colorFinal;
+                if (typeof valor == 'string') {
+                    colorFinal = valor;
+
+                } else {
+                    colorFinal = color;
+                }
+
                 context.fillStyle = colorFinal;
-                context.fillRect(x + posicion.x, y + posicion.y, 1, 1);
+                context.fillRect(x + posicion.x, y + posicion.y, 1, 1)
             }
+
         });
     });
 }
@@ -125,9 +130,22 @@ function rotar() {
 
 // 6. CONTROLES
 document.addEventListener('keydown', event => {
-    if (event.key === 'ArrowLeft' && pos.x > 0) pos.x--;
-    if (event.key === 'ArrowRight' && pos.x < COLUMNAS - pieza[0].length) pos.x++;
-    if (event.key === 'ArrowDown') pos.y++; // Caída rápida
+
+
+    if (event.key === "ArrowLeft") {
+        if (chocar(pieza, pos.x - 1, pos.y) == false) {
+            pos.x--;
+        }
+    }
+
+    if (event.key === 'ArrowRight') {
+        if (chocar(pieza, pos.x + 1, pos.y) == false)
+            pos.x++;
+    }
+    if (event.key === 'ArrowDown') {
+        if (chocar(pieza, pos.x, pos.y + 1) == false)
+            pos.y++;
+    }  // Caída rápida
     if (event.key === 'ArrowUp') rotar();
     dibujar();
 });
@@ -155,9 +173,6 @@ setInterval(() => {
             fila.forEach((valor, x) => {
                 if (valor !== 0) {
                     tablero[pos.y + y][pos.x + x] = colorPieza;
-
-
-
                 }
             });
         });
