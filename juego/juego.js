@@ -1,9 +1,9 @@
-/*let pieza1 = [
+let pieza1 = [
     [1, 1, 1],
     [0, 1, 0],
     [0, 0, 0]
 
-];*/
+];
 
 
 let pieza2 = [
@@ -13,7 +13,7 @@ let pieza2 = [
 
 ]
 
-/*let pieza3 = [
+let pieza3 = [
     [1, 0, 0],
     [1, 0, 0],
     [1, 1, 1]
@@ -23,7 +23,7 @@ let pieza4 = [
     [0, 1, 1],
     [0, 1, 0],
     [1, 1, 0]
-]*/
+]
 
 
 function getRandomColor() {
@@ -54,7 +54,7 @@ function getRandomColor() {
 }
 
 
-let piezas = [pieza2];
+let piezas = [pieza1,pieza2,pieza3,pieza4];
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 let pieza = selezionar_pieza(piezas);
@@ -186,8 +186,8 @@ setInterval(() => {
     if (chocar(pieza, pos.x, pos.y + 1) == true) {
         pieza.forEach((fila, y) => {
             fila.forEach((valor, x) => {
+               
                 if (valor !== 0) {
-                    destruirFilas();
                     tablero[pos.y + y][pos.x + x] = colorPieza;
                 }
             });
@@ -200,6 +200,7 @@ setInterval(() => {
     } else {
         pos.y++;
     }
+     destruirFilas();
     dibujar();
 }, 1000);
 
