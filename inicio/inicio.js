@@ -22,10 +22,6 @@ btnReg.addEventListener("click", function(){
 window.location.href ="../registro/registroHTML.html";
 });
 
-btnPer.addEventListener("click", function(){
-window.location.href="../perfil/perfil.html";
-});
-
 
 
 let usuario = getSession();
@@ -104,3 +100,6 @@ function comoJugar() {
 
 }
 
+document.addEventListener('keydown', event => {
+    console.log(JSON.stringify(event.key));
+});

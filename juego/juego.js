@@ -5,14 +5,6 @@ let pieza1 = [
 
 ];
 
-
-let pieza2 = [
-    [1, 1, 1],
-    [0, 0, 0],
-    [0, 0, 0]
-
-]
-
 let pieza3 = [
     [1, 0, 0],
     [1, 0, 0],
@@ -25,6 +17,13 @@ let pieza4 = [
     [1, 1, 0]
 ]
 
+<
+let pieza2 = [
+    [1, 1, 1],
+    [0, 0, 0],
+    [0, 0, 0]
+
+]
 
 function getRandomColor() {
     let color;
@@ -53,8 +52,11 @@ function getRandomColor() {
     return color;
 }
 
-
-let piezas = [pieza1,pieza2,pieza3,pieza4];
+let divPunt = document.querySelector(".puntuacion");
+let puntuacion = 0;
+let pausa = false;
+//let piezas = [pieza2];
+let piezas = [pieza1, pieza2, pieza3, pieza4];
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 let pieza = selezionar_pieza(piezas);
@@ -83,7 +85,6 @@ let pos = { x: 3, y: 0 };
 
 // 3. FUNCIÓN PARA DIBUJAR COSAS
 function dibujarMatriz(matriz, posicion, color) {
-    let colorFinal;
     matriz.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor !== 0) {
@@ -130,23 +131,47 @@ function rotar() {
 
 // 6. CONTROLES
 document.addEventListener('keydown', event => {
-
+    if (event.key === " ") {
+        if (pausa === false) {
+            pausa = true
+        } else {
+            pausa = false;
+        }
+    }
 
     if (event.key === "ArrowLeft") {
+        if (pausa === true) {
+            return;
+        }
+
         if (chocar(pieza, pos.x - 1, pos.y) == false) {
             pos.x--;
         }
     }
 
     if (event.key === 'ArrowRight') {
+        if (pausa === true) {
+            return;
+        }
+
         if (chocar(pieza, pos.x + 1, pos.y) == false)
             pos.x++;
     }
     if (event.key === 'ArrowDown') {
+        if (pausa === true) {
+            return;
+        }
+
         if (chocar(pieza, pos.x, pos.y + 1) == false)
             pos.y++;
     }  // Caída rápida
-    if (event.key === 'ArrowUp') rotar();
+    if (event.key === 'ArrowUp') {
+        if (pausa === true) {
+            return;
+        }
+
+        rotar();
+    }
     dibujar();
 });
 
@@ -160,9 +185,12 @@ function destruirFilas() {
             // aumentamos nuovamente la variable y porque necesitamos que vuelva a controlar la fila que baja, en principo pensaba que habia el riesgo //
             // de quedar atrapado en un buqule infinido pero me he dedo cuenta que se lanza solo si se cumple la condicion//
             y++;
-
+ puntuacion++;
+    divPunt.innerHTML = "<p> puntuacion: " + puntuacion + "</p>";
         }
     }
+    
+
 }
 
 
@@ -183,10 +211,15 @@ function chocar(matrizPieza, futuraX, futuraY) {
 }
 // 7. GRAVEDAD AUTOMÁTICA
 setInterval(() => {
-    if (chocar(pieza, pos.x, pos.y + 1) == true) {
+    if (pausa === true) {
+        return;
+    }
+
+
+    else if (chocar(pieza, pos.x, pos.y + 1) == true) {
         pieza.forEach((fila, y) => {
             fila.forEach((valor, x) => {
-               
+
                 if (valor !== 0) {
                     tablero[pos.y + y][pos.x + x] = colorPieza;
                 }
@@ -200,7 +233,7 @@ setInterval(() => {
     } else {
         pos.y++;
     }
-     destruirFilas();
+    destruirFilas();
     dibujar();
 }, 1000);
 
