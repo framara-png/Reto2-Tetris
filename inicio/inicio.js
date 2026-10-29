@@ -22,6 +22,12 @@ btnReg.addEventListener("click", function(){
 window.location.href ="../registro/registroHTML.html";
 });
 
+btnPer.addEventListener("click", function(){
+window.location.href="../perfil/perfil.html";
+});
+
+
+
 let usuario = getSession();
 
 if(usuario){
@@ -53,16 +59,6 @@ function aumentarPartidas() {
     contador.textContent = "PARTIDAS JUGADAS: " + partidas;
 
 }
-
-
-// ===================================
-// INICIO DE SESIÓN (TEMPORAL)
-// ===================================
-
-// Esta variable es provisional.
-// Más adelante la conectaremos con el sistema de usuarios.
-
-
 
 
 // ===================================
@@ -108,23 +104,3 @@ function comoJugar() {
 
 }
 
-
-// ===================================
-// SELECTOR DE IDIOMA
-// ===================================
-
-function cambiarIdioma() {
-
-    const idioma = document.getElementById("idioma").value;
-
-    if (idioma === "es") {
-
-        alert("Has seleccionado español.");
-
-    } else {
-
-        alert("You have selected English.");
-
-    }
-
-}
