@@ -62,7 +62,7 @@ function aumentarPartidas() {
 // Esta variable es provisional.
 // Más adelante la conectaremos con el sistema de usuarios.
 
-let usuarioLogueado = false;
+
 
 
 // ===================================
@@ -73,7 +73,7 @@ const botonJugar = document.getElementById("btn-jugar");
 
 botonJugar.addEventListener("click", function () {
 
-    if (!usuarioLogueado) {
+    if (!usuario) {
 
         alert("Es obligatorio iniciar sesión o registrarse para jugar.");
 
@@ -83,7 +83,7 @@ botonJugar.addEventListener("click", function () {
 
     aumentarPartidas();
 
-    window.location.href = "juego.html";
+    window.location.href = "../juego/juego.html";
 
 });
 
