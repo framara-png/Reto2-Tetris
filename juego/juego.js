@@ -131,13 +131,15 @@ function rotar() {
 
 // 6. CONTROLES
 document.addEventListener('keydown', event => {
-    if (event.key === " ") {
-        if (pausa === false) {
-            pausa = true
-        } else {
-            pausa = false;
+    while (pausa === false)
+
+        if (event.key === " ") {
+            if (pausa === false) {
+                pausa = true
+            } else {
+                pausa = false;
+            }
         }
-    }
 
     if (event.key === "ArrowLeft") {
         if (pausa === true) {
@@ -185,11 +187,14 @@ function destruirFilas() {
             // aumentamos nuovamente la variable y porque necesitamos que vuelva a controlar la fila que baja, en principo pensaba que habia el riesgo //
             // de quedar atrapado en un buqule infinido pero me he dedo cuenta que se lanza solo si se cumple la condicion//
             y++;
- puntuacion++;
-    divPunt.innerHTML = "<p> puntuacion: " + puntuacion + "</p>";
+            puntuacion++;
+            if (puntuacion % 10 === 0 && puntuacion != 0) {
+                pos.y++;
+            }
+            divPunt.innerHTML = "<p> puntuacion: " + puntuacion + "</p>";
         }
     }
-    
+
 
 }
 
