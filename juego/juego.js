@@ -1,5 +1,5 @@
 
-import {getSession, getRanking, setRanking} from "../logica/logicaJS.js";
+//import {getSession, getRanking, setRanking} from "../logica/logicaJS.js";
 
 
 
