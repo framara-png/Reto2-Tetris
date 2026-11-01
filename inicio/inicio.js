@@ -7,6 +7,7 @@ let btnReg = document.querySelector(".registro");
 let btnPer = document.querySelector(".perfil");
 
 let btnLogOut = document.querySelector(".logOut");
+let btnPuntuaciones = document.getElementById("btn-puntos");
 
 btnLogOut.addEventListener("click", function(){
     logOut();
@@ -85,13 +86,17 @@ botonJugar.addEventListener("click", function () {
 // ===================================
 
 
+btnPuntuaciones.addEventListener("click", function(){
+if (!usuario) {
 
+        alert("Haz login para ver tu puntuaciones.");
 
-function verPuntuaciones() {
+        return;
 
-    window.location.href = "puntuaciones.html";
+    }
+    window.location.href = "../ranking/ranking.html";
+});
 
-}
 
 
 function comoJugar() {

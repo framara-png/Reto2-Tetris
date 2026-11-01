@@ -1,3 +1,8 @@
+
+import {getSession, getRanking, setRanking} from "../logica/logicaJS.js";
+
+
+
 let pieza1 = [
     [1, 1, 1],
     [0, 1, 0],
@@ -51,6 +56,8 @@ function getRandomColor() {
 
     return color;
 }
+
+
 let divGameOver = document.querySelector(".GameOver");
 let divPunt = document.querySelector(".puntuacion");
 let puntuacion = 0;
