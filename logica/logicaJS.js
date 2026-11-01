@@ -75,7 +75,7 @@ export function loginMail(mail, password) {
 
 
 export function getRanking(username) {
-    let rankingUser = usuariosRegistrados.find(usuario => usuario.username === username)
+    let rankingUser = usuariosRegistrados.find(usuario => usuario.username === username);
     if (rankingUser) {
 
         return rankingUser.record;
@@ -88,7 +88,7 @@ export function getRanking(username) {
 
 export function addRanking(username, puntuacion) {
     let fecha = new Date().toISOString("es-E");
-    let rankingUser = usuariosRegistrados.find(usuario => usuario.username === username)
+    let rankingUser = usuariosRegistrados.find(usuario => usuario.username === username);
     if (rankingUser) {
 
         rankingUser.record.push({ fecha, puntuacion });
@@ -109,4 +109,13 @@ export function getSession() {
 
 export function logOut() {
     localStorage.removeItem("usuarioLogeado");
+}  
+
+
+export function clearRanking(username){
+let rankingUser = usuariosRegistrados.find(usuario => usuario.username === username);
+if(rankingUser){
+    rankingUser.record = []
+    localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
+}
 }

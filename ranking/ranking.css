@@ -117,6 +117,7 @@ h1 {
 
 
 nav {
+   flex-direction: column;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -134,6 +135,14 @@ button {
     cursor: pointer;
     box-shadow: 0 0 8px #00cfff;
 }
+
+.limpiar {
+    border-color: #ff9c38;
+    box-shadow: 0 0 12px #ff9c38;
+    background-color: #452044;
+}
+
+
 
 .ranking {
     color: #F7F7FF;

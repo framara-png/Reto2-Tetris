@@ -1,9 +1,9 @@
-import { getSession, logOut, getRanking, } from "../logica/logicaJS.js";
+import { getSession, logOut, getRanking,clearRanking } from "../logica/logicaJS.js";
 
 let usuario = getSession();
 let btnHome = document.querySelector(".atras");
 let btnLogOut = document.querySelector(".logOut");
-
+let btnLimpiar = document.querySelector(".limpiar");
 let rankingUsuario = getRanking(usuario);
 let copia = [...rankingUsuario];
 let ordenato = copia.sort((a,b) => b.puntuacion - a.puntuacion).slice(0,10);
@@ -28,4 +28,11 @@ window.location.href = "../inicio/inicio.html";
 
 btnHome.addEventListener("click", function(){
 window.location.href = "../inicio/inicio.html";
+});   
+
+
+
+btnLimpiar.addEventListener("click", function(){
+clearRanking(usuario);
+containrRanking.innerHTML = "JUEGA CABRON!!!!";
 });
