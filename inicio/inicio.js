@@ -100,6 +100,3 @@ function comoJugar() {
 
 }
 
-document.addEventListener('keydown', event => {
-    console.log(JSON.stringify(event.key));
-});

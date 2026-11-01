@@ -19,8 +19,8 @@ let pieza4 = [
 
 
 let pieza2 = [
+    [0,0 ,0 ],
     [1, 1, 1],
-    [0, 0, 0],
     [0, 0, 0]
 
 ]
@@ -51,24 +51,33 @@ function getRandomColor() {
 
     return color;
 }
-
+let divGameOver = document.querySelector(".GameOver");
 let divPunt = document.querySelector(".puntuacion");
 let puntuacion = 0;
 let pausa = false;
 //let piezas = [pieza2];
 let piezas = [pieza1, pieza2, pieza3, pieza4];
 const canvas = document.getElementById('tetris');
+let piezaSucc = document.getElementById('piezaSucc');
+
+let contextPieza = piezaSucc.getContext('2d');
 const context = canvas.getContext('2d');
 let pieza = selezionar_pieza(piezas);
 let colorPieza = getRandomColor();
+let nuevaPieza = selezionar_pieza(piezas);
+let nuevoColorNuePie = getRandomColor();
+console.log(nuevoColorNuePie);
 // Escalamos el canvas para trabajar con una cuadrícula de 10x20 (cada bloque mide 20px)
 context.scale(20, 20);
-
+contextPieza.scale(20,20);
 const COLUMNAS = 10;
 const FILAS = 20;
 
 // 1. CREAR EL TABLERO (Matriz de 10x20 llena de ceros)
 const tablero = Array.from({ length: FILAS }, () => Array(COLUMNAS).fill(0));
+let velocidad = 1000;
+let timer = setInterval(bajarPieza, velocidad);
+
 
 
 
@@ -82,9 +91,10 @@ function selezionar_pieza(p = []) {
 
 // Posición de la pieza
 let pos = { x: 3, y: 0 };
+let nuevaPos = {x : 1, y : 1 };
 
 // 3. FUNCIÓN PARA DIBUJAR COSAS
-function dibujarMatriz(matriz, posicion, color) {
+function dibujarMatriz(matriz, posicion, color, contesto) {
     matriz.forEach((fila, y) => {
         fila.forEach((valor, x) => {
             if (valor !== 0) {
@@ -96,8 +106,8 @@ function dibujarMatriz(matriz, posicion, color) {
                     colorFinal = color;
                 }
 
-                context.fillStyle = colorFinal;
-                context.fillRect(x + posicion.x, y + posicion.y, 1, 1)
+                contesto.fillStyle = colorFinal;
+                contesto.fillRect(x + posicion.x, y + posicion.y, 1, 1)
             }
 
         });
@@ -111,35 +121,53 @@ function dibujar() {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     // Dibujamos el tablero (bloques fijos) y la pieza actual
-    dibujarMatriz(tablero, { x: 0, y: 0 }, colorPieza);
+    dibujarMatriz(tablero, { x: 0, y: 0 }, colorPieza, context);
 
 
-    dibujarMatriz(pieza, pos, colorPieza);
+    dibujarMatriz(pieza, pos, colorPieza, context);
 }
+function dibujarSiguente() {
+    contextPieza.fillStyle = '#111';
+    contextPieza.fillRect(0, 0, piezaSucc.width, piezaSucc.height);
+    dibujarMatriz(tablero, { x: 0, y: 0 }, nuevoColorNuePie, contextPieza);
+    dibujarMatriz(nuevaPieza, nuevaPos, nuevoColorNuePie, contextPieza);
 
+}
 // 5. ROTACIÓN ULTRA SIMPLE
-function rotar() {
+function girarMatriz() {
     // Transponer la matriz
     for (let y = 0; y < pieza.length; ++y) {
         for (let x = 0; x < y; ++x) {
             [pieza[x][y], pieza[y][x]] = [pieza[y][x], pieza[x][y]];
+        
         }
+    
     }
     // Invertir las filas
     pieza.forEach(fila => fila.reverse());
 }
 
+function rotar(){
+   girarMatriz();
+    if (chocar(pieza,pos.x,pos.y)===true){
+        for (let i = 0; i < 3; i++){
+            girarMatriz();
+        }
+
+
+    }
+}
+
 // 6. CONTROLES
 document.addEventListener('keydown', event => {
-    while (pausa === false)
 
-        if (event.key === " ") {
-            if (pausa === false) {
-                pausa = true
-            } else {
-                pausa = false;
-            }
+    if (event.key === " ") {
+        if (pausa === false) {
+            pausa = true
+        } else {
+            pausa = false;
         }
+    }
 
     if (event.key === "ArrowLeft") {
         if (pausa === true) {
@@ -189,7 +217,9 @@ function destruirFilas() {
             y++;
             puntuacion++;
             if (puntuacion % 10 === 0 && puntuacion != 0) {
-                pos.y++;
+                velocidad = Math.max(200, velocidad - 200);
+                clearInterval(timer);
+                timer = setInterval(bajarPieza, velocidad);
             }
             divPunt.innerHTML = "<p> puntuacion: " + puntuacion + "</p>";
         }
@@ -214,9 +244,30 @@ function chocar(matrizPieza, futuraX, futuraY) {
     }
     return false;
 }
+
+function gameOver() {
+    if (chocar(pieza, pos.x, pos.y) == true) {
+
+        divGameOver.innerHTML = "<p> GAME OVER MANITOOO </p>" +
+            "<p> tu puntuacion es " + puntuacion + "</p>";
+
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
+
+
 // 7. GRAVEDAD AUTOMÁTICA
-setInterval(() => {
-    if (pausa === true) {
+
+function bajarPieza() {
+
+    if (gameOver() === false) {
+        return;
+    }
+    else if (pausa === true) {
         return;
     }
 
@@ -230,8 +281,11 @@ setInterval(() => {
                 }
             });
         });
-        colorPieza = getRandomColor();
-        pieza = selezionar_pieza(piezas)
+        colorPieza = nuevoColorNuePie;
+        pieza = nuevaPieza;
+        nuevaPieza = selezionar_pieza(piezas);
+        nuevoColorNuePie = getRandomColor();
+        dibujarSiguente();
         pos.y = 0;
         pos.x = 3;
 
@@ -240,7 +294,16 @@ setInterval(() => {
     }
     destruirFilas();
     dibujar();
-}, 1000);
+
+}
+
+
+
+
+
 
 // Dibujo inicial
+
+
 dibujar();
+dibujarSiguente();

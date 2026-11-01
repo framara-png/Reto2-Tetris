@@ -14,7 +14,13 @@
      height: 100vh;
      margin: 0;
  }
-
+.contenedorJuego {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   gap: 50px;
+}
  /* El contenedor del tablero usa CSS Grid */
  #tablero {
      display: grid;
