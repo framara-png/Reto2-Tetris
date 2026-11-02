@@ -1,8 +1,10 @@
 
-//import {getSession, getRanking, setRanking} from "../logica/logicaJS.js";
+import { getSession, getRanking, setRanking, addRanking } from "../logica/logicaJS.js";
 
 
 
+let usuario = getSession();
+let ranking = getRanking(usuario);
 let pieza1 = [
     [1, 1, 1],
     [0, 1, 0],
@@ -24,7 +26,7 @@ let pieza4 = [
 
 
 let pieza2 = [
-    [0,0 ,0 ],
+    [0, 0, 0],
     [1, 1, 1],
     [0, 0, 0]
 
@@ -76,7 +78,7 @@ let nuevoColorNuePie = getRandomColor();
 console.log(nuevoColorNuePie);
 // Escalamos el canvas para trabajar con una cuadrícula de 10x20 (cada bloque mide 20px)
 context.scale(20, 20);
-contextPieza.scale(20,20);
+contextPieza.scale(20, 20);
 const COLUMNAS = 10;
 const FILAS = 20;
 
@@ -98,7 +100,7 @@ function selezionar_pieza(p = []) {
 
 // Posición de la pieza
 let pos = { x: 3, y: 0 };
-let nuevaPos = {x : 1, y : 1 };
+let nuevaPos = { x: 1, y: 1 };
 
 // 3. FUNCIÓN PARA DIBUJAR COSAS
 function dibujarMatriz(matriz, posicion, color, contesto) {
@@ -146,18 +148,18 @@ function girarMatriz() {
     for (let y = 0; y < pieza.length; ++y) {
         for (let x = 0; x < y; ++x) {
             [pieza[x][y], pieza[y][x]] = [pieza[y][x], pieza[x][y]];
-        
+
         }
-    
+
     }
     // Invertir las filas
     pieza.forEach(fila => fila.reverse());
 }
 
-function rotar(){
-   girarMatriz();
-    if (chocar(pieza,pos.x,pos.y)===true){
-        for (let i = 0; i < 3; i++){
+function rotar() {
+    girarMatriz();
+    if (chocar(pieza, pos.x, pos.y) === true) {
+        for (let i = 0; i < 3; i++) {
             girarMatriz();
         }
 
@@ -257,7 +259,11 @@ function gameOver() {
 
         divGameOver.innerHTML = "<p> GAME OVER MANITOOO </p>" +
             "<p> tu puntuacion es " + puntuacion + "</p>";
-
+        for (let i = 0; i < ranking.length; i++) {
+            if (ranking[i].puntuacion < puntuacion) {
+                addRanking(usuario, puntuacion)
+            }
+        }
         return false;
     } else {
         return true;
