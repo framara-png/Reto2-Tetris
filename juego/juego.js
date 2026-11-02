@@ -64,8 +64,8 @@ let divGameOver = document.querySelector(".GameOver");
 let divPunt = document.querySelector(".puntuacion");
 let puntuacion = 0;
 let pausa = false;
-//let piezas = [pieza2];
-let piezas = [pieza1, pieza2, pieza3, pieza4];
+let piezas = [pieza2];
+//let piezas = [pieza1, pieza2, pieza3, pieza4];
 const canvas = document.getElementById('tetris');
 let piezaSucc = document.getElementById('piezaSucc');
 
@@ -256,6 +256,7 @@ function chocar(matrizPieza, futuraX, futuraY) {
 
 function gameOver() {
     if (chocar(pieza, pos.x, pos.y) == true) {
+        clearInterval(timer);
         addRanking(usuario, puntuacion);
         divGameOver.innerHTML = "<p> GAME OVER MANITOOO </p>" +
             "<p> tu puntuacion es " + puntuacion + "</p>"

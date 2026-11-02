@@ -117,9 +117,9 @@ export function getRanking(username) {
 
 
 export function addRanking(username, puntuacion) {
-
-    let data = new Date().toLocaleDateString("es-ES");
-    let orario = new Date.toLocaleTimeString("es-ES");
+let ahora = new Date();
+    let data = ahora.toLocaleDateString("es-ES");
+    let orario =  ahora.toLocaleTimeString("es-ES");
     //concatenazione di string //
     let fecha = `${data} ${orario}`;
     let rankingUser = usuariosRegistrados.find(usuario => usuario.username === username);
@@ -128,7 +128,7 @@ export function addRanking(username, puntuacion) {
     let puntuacionMasBaja = Math.min(...rankingUser.record.map(r => r.puntuacion));
         if (puntuacionMasBaja < puntuacion) {
             for (let i = 0; i < rankingUser.record.length; i++) {
-                if (rankingUser[i].record.puntuacion === puntuacionMasBaja) {
+                if (rankingUser.record[i].puntuacion === puntuacionMasBaja) {
                     rankingUser.record.splice(i, 1);
                     rankingUser.record.push({ fecha, puntuacion });
                     localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
