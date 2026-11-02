@@ -99,9 +99,3 @@ if (!usuario) {
 
 
 
-function comoJugar() {
-
-    window.location.href = "como-jugar.html";
-
-}
-

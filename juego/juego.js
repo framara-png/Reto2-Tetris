@@ -1,5 +1,5 @@
 
-import { getSession, getRanking, setRanking, addRanking } from "../logica/logicaJS.js";
+import { getSession, getRanking, addRanking } from "../logica/logicaJS.js";
 
 
 
@@ -256,20 +256,16 @@ function chocar(matrizPieza, futuraX, futuraY) {
 
 function gameOver() {
     if (chocar(pieza, pos.x, pos.y) == true) {
-
+        addRanking(usuario, puntuacion);
         divGameOver.innerHTML = "<p> GAME OVER MANITOOO </p>" +
-            "<p> tu puntuacion es " + puntuacion + "</p>";
-        for (let i = 0; i < ranking.length; i++) {
-            if (ranking[i].puntuacion < puntuacion) {
-                addRanking(usuario, puntuacion)
-            }
-        }
+            "<p> tu puntuacion es " + puntuacion + "</p>"
+
         return false;
-    } else {
+    }
+    else {
         return true;
     }
 }
-
 
 
 
