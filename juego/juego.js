@@ -1,6 +1,7 @@
 
-import { getSession, addRanking } from "../logica/logicaJS.js";
-
+import { getSession, addRanking,ranking } from "../logica/logicaJS.js";
+ let copia = [...ranking]
+let ordenato = copia.sort((a,b) => b.partida.puntuacion - a.partida.puntuacion).slice(0,10);
 
 
 let usuario = getSession();
@@ -60,6 +61,9 @@ function getRandomColor() {
 }
 
 
+ 
+
+    let containerTabla = document.querySelector(".tabla");
 let divGameOver = document.querySelector(".GameOver");
 let divPunt = document.querySelector(".puntuacion");
 let puntuacion = 0;
@@ -317,3 +321,28 @@ function bajarPieza() {
 
 dibujar();
 dibujarSiguente();
+
+
+function dibujartabla() {
+   let tablaHtml = "<table border='1'>" 
+ + "<tr>"  
++"<th> usuario </th>" 
++"<th> fecha </th>" 
++"<th> puntos </th>"
++"</tr>" ; 
+
+    for (let i = 0 ; i < ranking.length; i ++){
+    tablaHtml += "<tr>" +
+    "<td>" + ordenato[i].usuario.username + "</td>"+
+     "<td>" + ordenato[i].partida.fecha + "</td>"+
+      "<td>" + ordenato[i].partida.puntuacion + "</td>"+
+      "</tr>";
+
+    
+}
+tablaHtml+= "</table>";
+containerTabla.innerHTML = tablaHtml;
+}
+
+
+dibujartabla();

@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Tetris DAW - Ejemplo Base</title>
-     <link rel="stylesheet" href="juego.css">
+    <link rel="stylesheet" href="juego.css">
 </head>
+
 <body>
 
     <h1>Mini Tetris</h1>
     <p>Usa las flechas: Izquierda/Derecha para mover | Arriba para rotar| spacebara para pausar/reiniciar</p>
-    
-  <div class ="GameOver">
 
-  </div>
-  
-  
+    <div class="GameOver">
+
+    </div>
+
+
     <!-- Aquí JS inyectará los 200 divs -->
 
-<div class = contenedorJuego>
-<div class = piezaSucc>
-    <p> Pieza Siguente</p>
-    <canvas id="piezaSucc" width="100" height="100" style="background: #111;"></canvas>
-</div>
-    <canvas id="tetris" width="240" height="400" style="background: #111;"></canvas>
+    <div class=contenedorJuego>
+        <div class=piezaSucc>
+            <p> Pieza Siguente</p>
+            <canvas id="piezaSucc" width="100" height="100" style="background: #111;"></canvas>
+        </div>
+        <canvas id="tetris" width="240" height="400" style="background: #111;"></canvas>
 
 
-    <div class="puntuacion">
+        <div class="puntuacion">
+        </div>
     
-</div>
-</div>
-<script type="module" src ="juego.js"> </script>
+        <div class="tabla">
+            
+        </div>
+        
+
+    </div>
+    <script type="module" src="juego.js"> </script>
 </body>
+
 </html>
