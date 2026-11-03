@@ -265,6 +265,7 @@ function gameOver() {
         divGameOver.innerHTML = "<p> GAME OVER MANITOOO </p>" +
             "<p> tu puntuacion es " + puntuacion + "</p>"
 
+dibujartabla();
         return false;
     }
     else {
@@ -322,17 +323,20 @@ function bajarPieza() {
 dibujar();
 dibujarSiguente();
 
-
 function dibujartabla() {
-   let tablaHtml = "<table border='1'>" 
- + "<tr>"  
+   let tablaDoom = document.createElement("table"); 
+   
+   tablaDoom.border = "1";
+   let contenido = "";
+     contenido  += 
+ "<tr>"  
 +"<th> usuario </th>" 
 +"<th> fecha </th>" 
 +"<th> puntos </th>"
 +"</tr>" ; 
 
-    for (let i = 0 ; i < ranking.length; i ++){
-    tablaHtml += "<tr>" +
+    for (let i = 0 ; i < ordenato.length; i ++){
+    contenido  += "<tr>" +
     "<td>" + ordenato[i].usuario.username + "</td>"+
      "<td>" + ordenato[i].partida.fecha + "</td>"+
       "<td>" + ordenato[i].partida.puntuacion + "</td>"+
@@ -340,9 +344,11 @@ function dibujartabla() {
 
     
 }
-tablaHtml+= "</table>";
-containerTabla.innerHTML = tablaHtml;
+
+tablaDoom.innerHTML = contenido;
+divGameOver.appendChild(tablaDoom);
 }
 
 
-dibujartabla();
+
+

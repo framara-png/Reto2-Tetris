@@ -16,7 +16,7 @@ class partida {
 }
 
 let partidaAna = new partida("22/10/2026 14:32:10", 1);
-let partidaPino = new partida("25/3/2026 10:12:33", 5);
+let partidaPino = new partida("25//2026 10:12:33", 5);
 let partdiaPaolo = new partida("20/9/2026 11:05:21", 48);
 
 let user1 = new usuario("ana", "ana@gmail.com", "anaciao");
