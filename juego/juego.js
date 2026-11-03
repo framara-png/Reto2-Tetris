@@ -1,10 +1,10 @@
 
-import { getSession, getRanking, addRanking } from "../logica/logicaJS.js";
+import { getSession, addRanking } from "../logica/logicaJS.js";
 
 
 
 let usuario = getSession();
-let ranking = getRanking(usuario);
+
 let pieza1 = [
     [1, 1, 1],
     [0, 1, 0],

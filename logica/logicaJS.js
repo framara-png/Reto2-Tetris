@@ -22,13 +22,15 @@ let partdiaPaolo = new partida("20/10/2026 11:05:21", 48);
 let user1 = new usuario("ana", "ana@gmail.com", "anaciao");
 let user2 = new usuario("paolo", "paolo@gmail.com", "paolociao");
 let user3 = new usuario("pino", "pino@gmail.com", "pinociao");
-export let ranking = JSON.parse(localStorage.getItem("ranking")) || [[user1, partidaAna], [user2, partdiaPaolo], [user3, partidaPino]];
-
+export let ranking = JSON.parse(localStorage.getItem("ranking")) || [
+    { usuario: user1, partida: partidaAna },
+    { usuario: user2, partida: partdiaPaolo },
+    { usuario: user3, partida: partidaPino } 
+];
 
 export let usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios")) || [
     user1, user2, user3
 ];
-
 
 
 
@@ -93,18 +95,32 @@ export function addRanking(username, puntuacion) {
 
     let usuarioGiocante = usuariosRegistrados.find(usuario => usuario.username === username);
 
-    for (let i = 0; i < ranking.length; i++) {
-        if (ranking[i][1].puntuacion < puntuacion) {
-            ranking.splice(i, 1);
-            ranking.push({ usuarioGiocante, nuevaPartida });
-            localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
-            localStorage.setItem("ranking", JSON.stringify(ranking));
-            // anado el break porque asi no borro eventuales duplicados y añado dos veces el mismo record. 
-            break;
+    let puntuaciones = ranking.map(elemento => elemento.partida.puntuacion);
+    let nuevoRegistro = {
+        usuario : usuarioGiocante,
+        partida : nuevaPartida
+    };
+    
+    let puntuacionMasbaja = Math.min(...puntuaciones);
 
-        }
-
+    if (ranking.length < 10) {
+        ranking.push(nuevoRegistro );
+        localStorage.setItem("ranking", JSON.stringify(ranking));
     }
+
+    else if (puntuacionMasbaja < puntuacion) {
+        let indexPeor = ranking.findIndex(elemento => elemento.partida.puntuacion === puntuacionMasbaja);
+
+        ranking.splice(indexPeor, 1);
+        ranking.push( nuevoRegistro );
+        localStorage.setItem("ranking", JSON.stringify(ranking));
+
+
+
+    } else {
+        alert("das asco");
+    }
+
 }
 
 
@@ -128,9 +144,13 @@ export function logOut() {
 
 
 export function clearRanking(username) {
-    let rankingUser = usuariosRegistrados.find(usuario => usuario.username === username);
-    if (rankingUser) {
-        rankingUser.record = []
-        localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
+for(let i = 0; i < ranking.length; i ++){
+    if(ranking[i].usuario.username === username){
+        ranking.splice(i,1);
+        i--;
+       
     }
+
+}
+     localStorage.setItem("ranking", JSON.stringify(ranking));
 }

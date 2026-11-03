@@ -1,4 +1,4 @@
-import { setSession, loginUser, loginMail,getRanking } from "../logica/logicaJS.js";
+import { setSession, loginUser, loginMail } from "../logica/logicaJS.js";
 
 
 let errorDiv = document.querySelector(".errores");
