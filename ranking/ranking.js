@@ -1,20 +1,20 @@
-import { getSession, logOut, getRanking,clearRanking } from "../logica/logicaJS.js";
+import { getSession, logOut, ranking,clearRanking } from "../logica/logicaJS.js";
 
 let usuario = getSession();
 let btnHome = document.querySelector(".atras");
 let btnLogOut = document.querySelector(".logOut");
 let btnLimpiar = document.querySelector(".limpiar");
-let rankingUsuario = getRanking(usuario);
-let copia = [...rankingUsuario];
-let ordenato = copia.sort((a,b) => b.puntuacion - a.puntuacion).slice(0,10);
+let copia = [...ranking];
+let ordenato = copia.sort((a,b) => b[1].puntuacion - a[1].puntuacion).slice(0,10);
 
 
 let containrRanking = document.querySelector(".ranking");
 
 
 for (let i = 0; i < ordenato.length; i++) {
-    containrRanking.innerHTML += "<h3> fecha: " + ordenato[i].fecha + "</h3>" +
-        "<h3> puntos: " + ordenato[i].puntuacion + "</h3>";
+    containrRanking.innerHTML += "<h3> Usuario: " + ordenato[i][0].username + "</h3>" +
+     "<h3> fecha: " + ordenato[i][1].fecha + "</h3>" +
+        "<h3> puntos: " + ordenato[i][1].puntuacion + "</h3>";
 }
  
 

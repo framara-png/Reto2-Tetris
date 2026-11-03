@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Tetri - DAW 2</title>
+    <link rel="stylesheet" href="usuario.css">
+
+    <script src="usuario.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo-pequeno">
+            <a href="inicio.html">MINI TETRI</a>
+        </div>
+
+        <nav aria-label="Navegación principal">
+
+            <button type="button" onclick="volverAtras()">
+                HOME
+            </button>
+
+            <button type="button" onclick="editarDatos()">
+                Editar Perfil
+            </button>
+        </nav>
+
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="form-container">
+
+        <!-- PANEL SUPERIOR: INFORMACIÓN Y ESTADÍSTICAS DEL USUARIO -->
+        <section class="tarjeta-usuario">
+            <!-- Columna Izquierda: Foto y Stats -->
+            <div class="datos-usuario">
+                <div class="foto-perfil"></div>
+                <div class="info-estadisticas">
+                    <p>Partidas jugadas:</p>
+                    <p>Mejor ranking:</p>
+                </div>
+            </div>
+
+            <!-- Columna Central: Nombre y Botón -->
+            <div class="usuario-central">
+                <h3>@Usuario</h3>
+                <span class="subtext">Filtrar ranking</span>
+                <button type="button" class="boton-ranking">
+                    Ver mejores rankings
+                </button>
+            </div>
+
+            <!-- Columna Derecha: Solo el juego Mini Tetri -->
+            <div class="juegos-usuario">
+                <h4>Partidas por juego</h4>
+                <ul>
+                    <li><span class="icono purpura"></span> Tetris</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EL FORMULARIO AHORA ESTÁ DENTRO DEL CONTENEDOR -->
+
+    <div class="formulario-caja">
+        <form id="inscription" method="POST" action="#">
+            <h2>Editar perfil</h2>
+            <p>
+                <label for="nombre">Usuario: </label>
+                <input type="text" id="nombre" required />
+            </p>
+            <p>
+                <label for="email">E-mail: </label>
+                <input type="email" id="email" required />
+            </p>
+            <p>
+                <label for="password">Contraseña: </label>
+                <input type="password" id="password" required />
+            </p>
+            <p>
+                <label for="passwordRepit">Repite contraseña: </label>
+                <input type="password" id="passwordRepit" required />
+            </p>
+            <p class="btn-container">
+                <input type="submit" id="envio" value="Enviar" />
+            </p>
+        </form>
+    </div>
+
+    </main>
+
+    <footer class="mi-footer" id="contacto">
+        <p>&copy; 2026 - MINI TETRI | ¡Prepárate para jugar!</p>
+    </footer>
+
+
+</body>
+
+</html>

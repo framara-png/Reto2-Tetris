@@ -8,8 +8,7 @@ document.forms["miFormulario"].addEventListener("submit", function (para) {
     let nombreUs = document.forms["miFormulario"]["nom"].value;
     let emailUs = document.forms["miFormulario"]["mail"].value;
     let passUs = document.forms["miFormulario"]["pass"].value;
-    let ranking = [{ fecha:"" , puntuacion : "",}];
-    let datosOk = verificaDatos(nombreUs, emailUs, passUs,ranking);
+    let datosOk = verificaDatos(nombreUs, emailUs, passUs);
 
     if (datosOk) {
         setSession(nombreUs);

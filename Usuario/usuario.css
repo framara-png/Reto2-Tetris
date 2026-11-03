@@ -1,0 +1,279 @@
+/* Estilos generales y reseteo básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* 1. Tus estilos de la imagen de fondo */
+    background-image: url('../img/imagen\ de\ fondo\ tetris.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #080820;
+    color: white;
+    min-height: 100vh;       
+    display: flex;
+    flex-direction: column; /* Organiza header, main y footer verticalmente */
+       
+}
+
+/* ENCABEZADO */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #10102e;
+    border-bottom: 2px solid #292965;
+}
+
+.logo-pequeno a {
+    color: #ff55ed;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav button {
+    padding: 10px;
+    border: 2px solid #65eaff;
+    border-radius: 8px;
+    background-color: #11112e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background-color: #65eaff;
+    color: #10102e;
+}
+
+/* CONTENEDOR PRINCIPAL QUE CENTRA EL CUADRO */
+.form-container {
+    flex: 1; /* Ocupa el espacio disponible entre header y footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    
+}
+
+/* TARJETA SUPERIOR DE USUARIO */
+.tarjeta-usuario {
+    width: 100%;
+    max-width: 750px;
+    background-color: #10102e;
+    border: 2px solid #65eaff;
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datos-usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.foto-perfil {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #65eaff;
+}
+
+.info-estadisticas p {
+    font-size: 12px;
+    color: #a0a5c0;
+    margin-bottom: 4px;
+}
+
+.usuario-central {
+    text-align: center;
+}
+
+.usuario-central h3 {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.usuario-central .subtext {
+    font-size: 11px;
+    color: #a0a5c0;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.boton-ranking {
+    background: transparent;
+    border: 1px solid #65eaff;
+    color: #65eaff;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.boton-ranking:hover {
+    background: #65eaff;
+    color: #10102e;
+}
+
+.juegos-usuario h4 {
+    font-size: 12px;
+    color: #a0a5c0;
+    margin-bottom: 8px;
+}
+
+.juegos-usuario ul {
+    list-style: none;
+}
+
+.juegos-usuario li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.icono {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+}
+
+.icono.purpura {
+    background-color: #ff55ed;
+}
+
+   /* FORMULARIO DE EDICIÓN */
+.formulario-caja {
+    width: 100%;
+    max-width: 550px;
+    border: 10px solid #65eaff;
+    background-color: #10102e;
+    border-radius: 40px;
+    padding: 20px;
+}
+   
+
+#inscription h2 {
+    text-align: center;
+    color: #ff55ed;
+    margin-bottom: 20px;
+}
+
+#inscription p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    margin-right: 65px;
+    border-radius: 12px;
+}
+
+label {
+    width: 130px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+input {
+    border: 1px solid #65eaff;
+    background-color: #080820;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    flex: 1;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+input[type=submit] {
+    flex: initial;
+    width: 100px;
+    background-color: #65eaff;
+    color: #10102e;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+input[type=submit]:hover {
+    background-color: #ff55ed;
+    color: white;
+}
+
+
+/* PIE DE PAGINA */
+
+.mi-footer {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #11102f;
+    color: #55eaff;
+    border-top: 1px solid #55eaff;
+    margin-top: auto;
+}
+
+/* ADAPTACION A MOVILES */
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tarjeta-usuario {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    #inscription p {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+}
