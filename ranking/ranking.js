@@ -42,6 +42,6 @@ window.location.href = "../inicio/inicio.html";
 
 
 btnLimpiar.addEventListener("click", function(){
-clearRanking(usuario);
+clearRanking(usuario.username);
 window.location.reload();
 });

@@ -64,8 +64,10 @@ export function verificaDatos(user, email, password) {
 
 
 export function loginUser(user, password) {
-    if (usuariosRegistrados.some(usuario => usuario.username.toLowerCase() === user.toLowerCase() && usuario.password === password)) {
-        return true;
+    let utenteLogeado = usuariosRegistrados.find(usuario => usuario.username.toLowerCase() === user.toLowerCase() && usuario.password === password);
+        if(utenteLogeado){
+        return utenteLogeado;
+            return true;
     } else {
         return false;
     }
@@ -128,13 +130,17 @@ export function addRanking(username, puntuacion) {
 
 
 
-export function setSession(username) {
-    localStorage.setItem("usuarioLogeado", username);
+export function setSession(usuario) {
+    localStorage.setItem("usuarioLogeado", JSON.stringify(usuario));
+
+
 
 }
 
 export function getSession() {
-    return localStorage.getItem("usuarioLogeado");
+  let session = localStorage.getItem("usuarioLogeado");
+    return session ? JSON.parse(session) : null;
+
 }
 
 

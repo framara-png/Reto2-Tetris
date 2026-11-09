@@ -9,20 +9,14 @@ document.forms["formLog"].addEventListener("submit", function (para) {
 
     let usuario = document.forms["formLog"]["userLog"].value;
     let password = document.forms["formLog"]["userPass"].value;
-    let log = null;
-    if (usuario.includes("@")) {
-        log = loginMail(usuario, password);
-    } else {
-        log = loginUser(usuario, password);
-    }
+    let userLogeado = loginUser(usuario,password);
+    
 
 
-
-
-    if (log) {
+    if (userLogeado) {
         // si se logea con mail i set session guardara el mail del usuario no el user, posible problema en futuro para guardar el record?//
         
-        setSession(usuario);
+        setSession(userLogeado);
         window.location.href = "../inicio/inicio.html";
     } else {
         errorDiv.innerHTML = "<p> Error: password o user incorrecto</p>";

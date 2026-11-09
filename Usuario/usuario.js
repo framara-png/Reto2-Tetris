@@ -1,6 +1,12 @@
+import { getSession, } from "../logica/logicaJS.js";
+
+ let   usuario =  getSession();
+    console.log(usuario);
+    cargarDatosUsuario();
 document.addEventListener("DOMContentLoaded", () => {
     // 1. CARGAR DATOS Y ESTADÍSTICAS AL ENTRAR
-    cargarDatosUsuario();
+    
+
 
     // 2. GESTIONAR EL FORMULARIO DE EDITAR PERFIL (#inscription)
     const formulario = document.getElementById("inscription");
@@ -21,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // Guardar los datos actualizados en localStorage
+          
+          
+          
             localStorage.setItem("usuario_nombre", nombreInput);
             localStorage.setItem("usuario_email", emailInput);
             localStorage.setItem("usuario_password", passwordInput);
@@ -46,25 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function cargarDatosUsuario() {
     // Obtener valores guardados o usar valores por defecto
-    const nombreUsuario = localStorage.getItem("usuario_nombre") || "Usuario";
-    const emailUsuario = localStorage.getItem("usuario_email") || "";
-    const passwordUsuario = localStorage.getItem("usuario_password") || "";
-
+    const nombreUsuario = usuario.username; 
+    const emailUsuario =  usuario.email;
+    const passwordUsuario = usuario.password;
     // Partidas jugadas (conectado con tu sessionStorage / localStorage del inicio)
     const partidasJugadas = sessionStorage.getItem("partidas") || localStorage.getItem("partidas") || 0;
     
-    // Mejor ranking (puedes guardarlo cuando termine una partida en el juego)
-    const mejorRanking = localStorage.getItem("mejorRanking") || "Sin registrar";
+   
 
-    // INYECTAR DATOS EN LA TARJETA SUPERIOR DE TU HTML
-    const contenedorEstadisticas = document.querySelector(".info-estadisticas");
-    if (contenedorEstadisticas) {
-        contenedorEstadisticas.innerHTML = `
-            <p>Partidas jugadas: ${partidasJugadas}</p>
-            <p>Mejor ranking: ${mejorRanking}</p>
-        `;
-    }
-
+   
     const h3Usuario = document.querySelector(".usuario-central h3");
     if (h3Usuario) {
         h3Usuario.textContent = "@" + nombreUsuario;
@@ -84,7 +83,7 @@ function cargarDatosUsuario() {
 
 // 4. FUNCIONES DE NAVEGACIÓN DEL HEADER
 function volverAtras() {
-    window.location.href = "inicio.html";
+    window.location.href = "../inicio/inicio.html";
 }
 
 function editarDatos() {

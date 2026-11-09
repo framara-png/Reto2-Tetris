@@ -23,7 +23,9 @@ btnReg.addEventListener("click", function(){
 window.location.href ="../registro/registroHTML.html";
 });
 
-
+btnPer.addEventListener("click", function(){
+window.location.href= "../usuario/usuario.html";
+});
 
 let usuario = getSession();
 
